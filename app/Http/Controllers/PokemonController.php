@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
+use App\Models\Type;
 use Illuminate\Http\Request;
+
+use function PHPSTORM_META\type;
 
 class PokemonController extends Controller
 {
@@ -14,7 +17,8 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        //
+        
+        
     }
 
     /**
@@ -24,7 +28,9 @@ class PokemonController extends Controller
      */
     public function create()
     {
-        //
+        $types = Type::all();
+        $pokemons = Pokemon::all();
+        return view('pokemon',compact('types','pokemons'));
     }
 
     /**
@@ -35,7 +41,13 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pokemon = new Pokemon();
+        $pokemon->nom = $request->nom;
+        $pokemon->img = $request->img;
+        $pokemon->lvl = $request->lvl;
+        $pokemon->types()->sync([$request->t1, $request->t1]);
+        $pokemon->push();
+        return redirect('/pokemon');
     }
 
     /**
@@ -46,7 +58,8 @@ class PokemonController extends Controller
      */
     public function show(Pokemon $pokemon)
     {
-        //
+        
+        return view('showpokemon',compact('pokemon'));
     }
 
     /**
@@ -57,7 +70,7 @@ class PokemonController extends Controller
      */
     public function edit(Pokemon $pokemon)
     {
-        //
+        return view('editpokemon',compact('pokemon'));
     }
 
     /**
@@ -69,7 +82,12 @@ class PokemonController extends Controller
      */
     public function update(Request $request, Pokemon $pokemon)
     {
-        //
+        $pokemon->nom = $request->nom;
+        $pokemon->img = $request->img;
+        $pokemon->lvl = $request->lvl;
+        $pokemon->types()->sync([$request->t1, $request->t1]);
+        $pokemon->push();
+        return redirect('/pokemon');
     }
 
     /**
@@ -80,6 +98,7 @@ class PokemonController extends Controller
      */
     public function destroy(Pokemon $pokemon)
     {
-        //
+        $pokemon->delete();
+        return redirect()->back();
     }
 }

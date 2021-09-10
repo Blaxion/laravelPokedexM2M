@@ -34,5 +34,29 @@ class DatabaseSeeder extends Seeder
             ['type_name' => 'ténébres'],
             ['type_name' => 'fées']
         ]);
+
+        DB::table('pokemon')->insert([
+            [
+                'nom' => 'Poke1',
+                'img' => 'https://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png',
+                'lvl' => 99,
+            ],
+            [
+                'nom' => 'Poke2',
+                'img' => 'https://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png',
+                'lvl' => 20,
+            ],
+            [
+                'nom' => 'Poke3',
+                'img' => 'https://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png',
+                'lvl' => 30,
+            ],
+            [
+                'nom' => 'Poke4',
+                'img' => 'https://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png',
+                'lvl' => 40,
+            ],
+            
+        ]);
     }
 }

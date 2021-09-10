@@ -16,9 +16,8 @@ class CreatePokemonTable extends Migration
         Schema::create('pokemon', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('type');
             $table->string('img');
-            $table->string('lvl');
+            $table->integer('lvl');
             $table->timestamps();
         });
     }
